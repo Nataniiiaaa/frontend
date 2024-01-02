@@ -4,21 +4,11 @@
       <div class="card-body">
         <h2 class="card-title">Detail Data Mahasiswa</h2>
         <ul class="list-group">
-          <li class="list-group-item">
-            <strong>NIM:</strong> {{ Mahasiswa.nim }}
-          </li>
-          <li class="list-group-item">
-            <strong>Nama:</strong> {{ Mahasiswa.nama }}
-          </li>
-          <li class="list-group-item">
-            <strong>Alamat:</strong> {{ Mahasiswa.alamat }}
-          </li>
-          <li class="list-group-item">
-            <strong>Tanggal Lahir:</strong> {{ Mahasiswa.lahir }}
-          </li>
-          <li class="list-group-item">
-            <strong>Agama:</strong> {{ getAgamaName(Mahasiswa.agama_id) }}
-          </li>
+          <li class="list-group-item"><strong>NIM:</strong> {{ Mahasiswa.nim }}</li>
+          <li class="list-group-item"><strong>Nama:</strong> {{ Mahasiswa.nama }}</li>
+          <li class="list-group-item"><strong>Alamat:</strong> {{ Mahasiswa.alamat }}</li>
+          <li class="list-group-item"><strong>Tanggal Lahir:</strong> {{ Mahasiswa.lahir }}</li>
+          <li class="list-group-item"><strong>Agama:</strong> {{ getAgamaName(Mahasiswa.agama_id) }}</li>
         </ul>
         <div class="btn-group mt-3">
           <router-link class="btn btn-warning" to="/datamahasiswa">Kembali</router-link>
@@ -53,19 +43,19 @@ export default {
   },
   methods: {
     fetchMahasiswaData() {
-      var url = `http://127.0.0.1:8000/api/mahasiswa/${this.mahasiswaId}`;
+      var url = `https://api-group7-prognet.manpits.xyz/api/mahasiswa/${this.mahasiswaId}`;
       axios.get(url).then(({ data }) => {
         this.Mahasiswa = data;
       });
     },
     loadAgamaList() {
-      var agamaUrl = 'http://127.0.0.1:8000/api/agama';
+      var agamaUrl = 'https://api-group7-prognet.manpits.xyz/api/agama';
       axios.get(agamaUrl).then(({ data }) => {
         this.agamaList = data;
       });
     },
     getAgamaName(agamaId) {
-      const agama = this.agamaList.find(a => a.id === agamaId);
+      const agama = this.agamaList.find((a) => a.id === agamaId);
       return agama ? agama.agama : '';
     },
   },
